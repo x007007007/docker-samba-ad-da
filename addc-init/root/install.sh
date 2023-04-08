@@ -1,6 +1,11 @@
 #!/bin/bash
 # reconfig krb5-config
 
+if [[ "$(ls -A /opt/samba)" ]]; then
+  echo "already config samba database"
+  exit 1
+fi
+
 echo REALM: ${REALM?-REALM required}
 echo KRB5_SERVER: ${KRB5_SERVER?-KRB5_SERVER required}
 
