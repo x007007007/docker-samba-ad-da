@@ -4,7 +4,10 @@ services:
     image: addc:latest
     network_mode: host
     build:
-      context: addc
+      context: addc-init
+    environment:
+      - REALM=HOME.X007007007.INFO
+      - KRB5_SERVER=home.x007007007.info
     privileged: true
     volumes:
       - ./data:/opt/samba

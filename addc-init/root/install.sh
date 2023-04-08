@@ -1,7 +1,8 @@
+#!/bin/bash
 # reconfig krb5-config
 
-echo REALM: ${REALM:-REALM required}
-echo KRB5_SERVER: ${KRB5_SERVER:-KRB5_SERVER required}
+echo REALM: ${REALM?-REALM required}
+echo KRB5_SERVER: ${KRB5_SERVER?-KRB5_SERVER required}
 
 echo krb5-config     krb5-config/default_realm       string ${REALM} |debconf-set-selections
 echo krb5-config     krb5-config/kerberos_servers    string ${KRB5_SERVER} |debconf-set-selections
@@ -23,4 +24,4 @@ mkdir -p /opt/samba/etc/samba
 mkdir -p /opt/samba/var/lib/
 cp /etc/krb5.conf /opt/samba/etc/
 cp /etc/samba/smb.conf /opt/samba/etc/samba/
-cp -r /opt/lib/samba /opt/samba/var/lib/
+cp -r /var/lib/samba /opt/samba/var/lib/
