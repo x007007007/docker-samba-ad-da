@@ -1,6 +1,6 @@
 version: "3.4"
 services:
-  addc:
+  addc-init:
     image: addc:latest
     network_mode: host
     build:
@@ -8,10 +8,20 @@ services:
     environment:
       - REALM=HOME.X007007007.INFO
       - KRB5_SERVER=home.x007007007.info
+      - SAMBA_INIT=true
     privileged: true
     volumes:
       - ./data:/opt/samba
-
+  addc:
+    image: addc:latest
+    network_mode: host
+    build:
+      context: addc-init
+    privileged: true
+    volumes:
+      - ./data/var/samba:/var/samba
+      - ./data/etc/samba/smb.conf:/etc/samba/smb.conf
+      - ./data/etc/krb5.conf:/etc/krb5.conf
 
 
 
