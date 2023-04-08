@@ -19,7 +19,7 @@ services:
       context: addc-init
     privileged: true
     volumes:
-      - ./data/var/samba:/var/samba
+      - ./data/var/lib/samba:/var/lib/samba
       - ./data/etc/samba/smb.conf:/etc/samba/smb.conf
       - ./data/etc/krb5.conf:/etc/krb5.conf
 
